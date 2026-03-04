@@ -1,12 +1,31 @@
 {
-  "name": "finity-design-system",
+  "name": "@finity/design-system",
   "version": "0.1.0",
-  "private": true,
+  "description": "Finity Design System — shared React component library",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "sideEffects": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:lib": "tsup src/index.ts --format cjs,esm --dts --external react react-dom",
     "start": "next start",
     "lint": "eslint"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "dependencies": {
     "@types/papaparse": "^5.5.2",
@@ -24,6 +43,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tsup": "^8",
     "typescript": "^5"
   }
 }
