@@ -19,7 +19,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --no-dts-resolve --external react react-dom",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --no-dts-resolve --external react react-dom --watch"
+    "dev": "tsup src/index.ts --format cjs,esm --dts --no-dts-resolve --external react react-dom --watch",
+    "release": "bash release.sh"
   },
   "peerDependencies": {
     "react": ">=18",
