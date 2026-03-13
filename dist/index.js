@@ -78,6 +78,7 @@ __export(index_exports, {
   CloseFilled: () => CloseFilled,
   CompactMedium: () => CompactMedium,
   CompactSemibold: () => CompactSemibold,
+  DateOfBirthField: () => DateOfBirthField,
   Delete: () => Delete,
   Download: () => Download,
   Edit: () => Edit,
@@ -98,7 +99,9 @@ __export(index_exports, {
   Lock: () => Lock,
   Mail: () => Mail,
   Menu: () => Menu,
+  MobileNumberField: () => MobileNumberField,
   Pin: () => Pin,
+  PinCodeField: () => PinCodeField,
   Search: () => Search,
   SearchField: () => SearchField,
   Settings: () => Settings,
@@ -1135,6 +1138,258 @@ function CompactMedium({ children, className, as }) {
 function SmallSemibold({ children, className, as }) {
   return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "smallSemibold", as, className, children });
 }
+
+// src/components/pin-code-field/PinCodeField.tsx
+var import_react5 = require("react");
+var import_jsx_runtime13 = require("react/jsx-runtime");
+function PinCodeField({
+  length = 6,
+  size = "large",
+  value,
+  onChange,
+  errorMessage,
+  helperText,
+  disabled = false,
+  readOnly = false,
+  className = ""
+}) {
+  const inputRefs = (0, import_react5.useRef)([]);
+  const hasError = !!errorMessage;
+  const digits = Array.from({ length }, (_, i) => value[i] || "");
+  const slotDimension = size === "large" ? "w-[56px] h-[56px]" : "w-[48px] h-[48px]";
+  const getSlotClass = () => {
+    if (hasError) {
+      return `${slotDimension} rounded-lg border-2 border-solid border-[var(--color-red-600)] bg-[var(--color-base-white)]`;
+    }
+    if (disabled || readOnly) {
+      return `${slotDimension} rounded-lg border border-solid border-[var(--color-border-subtle)] bg-[var(--color-grey-100)]`;
+    }
+    return `${slotDimension} rounded-lg border border-solid border-[var(--color-border-default)] bg-[var(--color-base-white)] focus:border-[3px] focus:border-[var(--color-text-default)] outline-none`;
+  };
+  const handleChange = (index, e) => {
+    var _a;
+    const char = e.target.value.replace(/\D/g, "").slice(-1);
+    const newDigits = [...digits];
+    newDigits[index] = char;
+    onChange(newDigits.join(""));
+    if (char && index < length - 1) {
+      (_a = inputRefs.current[index + 1]) == null ? void 0 : _a.focus();
+    }
+  };
+  const handleKeyDown = (index, e) => {
+    var _a;
+    if (e.key === "Backspace" && !digits[index] && index > 0) {
+      const newDigits = [...digits];
+      newDigits[index - 1] = "";
+      onChange(newDigits.join(""));
+      (_a = inputRefs.current[index - 1]) == null ? void 0 : _a.focus();
+    }
+  };
+  const handlePaste = (e) => {
+    var _a;
+    e.preventDefault();
+    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, length);
+    onChange(pasted);
+    const focusIndex = Math.min(pasted.length, length - 1);
+    (_a = inputRefs.current[focusIndex]) == null ? void 0 : _a.focus();
+  };
+  const sharedInputClass = `
+    ${getSlotClass()}
+    flex items-center justify-center
+    text-center font-semibold text-[20px] leading-[28px] tracking-[var(--letter-spacing-tight)]
+    text-[var(--color-text-default)]
+    transition-colors duration-150
+    ${disabled || readOnly ? "cursor-not-allowed" : ""}
+  `;
+  const slots = digits.map((digit, i) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+    "input",
+    {
+      ref: (el) => {
+        inputRefs.current[i] = el;
+      },
+      type: "text",
+      inputMode: "numeric",
+      maxLength: 1,
+      value: digit,
+      disabled,
+      readOnly,
+      className: sharedInputClass,
+      onChange: (e) => handleChange(i, e),
+      onKeyDown: (e) => handleKeyDown(i, e),
+      onPaste: handlePaste
+    },
+    i
+  ));
+  const slotsWithDivider = length === 6 ? [
+    ...slots.slice(0, 3),
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+      "div",
+      {
+        className: "w-[8px] h-0 border-t border-[var(--color-border-default)] self-center"
+      },
+      "divider"
+    ),
+    ...slots.slice(3)
+  ] : slots;
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-4)] items-start ${className}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "flex items-center gap-[var(--spacing-8)]", children: slotsWithDivider }),
+    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
+  ] });
+}
+
+// src/components/mobile-number-field/MobileNumberField.tsx
+var import_react6 = require("react");
+var import_jsx_runtime14 = require("react/jsx-runtime");
+var MobileNumberField = (0, import_react6.forwardRef)(
+  function MobileNumberField2(_a, ref) {
+    var _b = _a, {
+      label = "Mobile number",
+      dialCode = "+44",
+      helperText,
+      errorMessage,
+      disabled = false,
+      className = ""
+    } = _b, props = __objRest(_b, [
+      "label",
+      "dialCode",
+      "helperText",
+      "errorMessage",
+      "disabled",
+      "className"
+    ]);
+    const hasError = !!errorMessage;
+    const borderClass = hasError ? "border-2 border-[var(--color-red-600)]" : disabled ? "border border-[var(--color-border-subtle)]" : "border border-[var(--color-border-default)] focus-within:border-[3px] focus-within:border-[var(--color-text-default)]";
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-8)] w-full ${className}`, children: [
+      label && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("label", { className: "text-body-medium text-[var(--color-text-secondary)]", children: label }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+        "div",
+        {
+          className: `
+            flex items-center overflow-hidden rounded-lg border-solid
+            h-[var(--spacing-48)]
+            transition-colors duration-150
+            ${borderClass}
+            ${disabled ? "bg-[var(--color-grey-100)]" : "bg-[var(--color-base-white)]"}
+          `,
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "flex items-center justify-center shrink-0 h-full px-[var(--spacing-12)] bg-[var(--color-grey-100)] border-r border-[var(--color-border-default)]", children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { className: "text-body-medium text-[var(--color-text-secondary)] w-[var(--spacing-32)] text-center", children: dialCode }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
+              "input",
+              __spreadValues({
+                ref,
+                type: "tel",
+                inputMode: "numeric",
+                disabled,
+                className: `
+              flex-1 min-w-0 h-full bg-transparent outline-none px-[var(--spacing-12)]
+              text-body-regular
+              text-[var(--color-text-default)]
+              placeholder:text-[var(--color-text-disabled)]
+              disabled:cursor-not-allowed disabled:text-[var(--color-text-disabled)]
+            `
+              }, props)
+            )
+          ]
+        }
+      ),
+      (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
+    ] });
+  }
+);
+
+// src/components/date-of-birth-field/DateOfBirthField.tsx
+var import_react7 = require("react");
+var import_jsx_runtime15 = require("react/jsx-runtime");
+function DateOfBirthField({
+  label = "Date of birth",
+  value,
+  onChange,
+  errorMessage,
+  helperText,
+  disabled = false,
+  className = ""
+}) {
+  const monthRef = (0, import_react7.useRef)(null);
+  const yearRef = (0, import_react7.useRef)(null);
+  const hasError = !!errorMessage;
+  const slotClass = hasError ? "border-2 border-[var(--color-red-600)] bg-[var(--color-base-white)]" : disabled ? "border border-[var(--color-border-subtle)] bg-[var(--color-grey-100)]" : "border border-[var(--color-border-default)] bg-[var(--color-base-white)] focus-within:border-2 focus-within:border-[var(--color-text-default)]";
+  const inputClass = `
+    w-full h-full bg-transparent outline-none px-[var(--spacing-12)]
+    text-body-regular
+    text-[var(--color-text-default)]
+    placeholder:text-[var(--color-text-disabled)]
+    disabled:cursor-not-allowed disabled:text-[var(--color-text-disabled)]
+  `;
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-4)] ${className}`, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { className: "text-body-medium text-[var(--color-text-secondary)]", children: label }),
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "flex gap-[var(--spacing-8)] items-start", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Day" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[64px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+          "input",
+          {
+            type: "text",
+            inputMode: "numeric",
+            maxLength: 2,
+            placeholder: "dd",
+            value: value.day,
+            disabled,
+            className: inputClass,
+            onChange: (e) => {
+              var _a;
+              const v = e.target.value.replace(/\D/g, "");
+              onChange(__spreadProps(__spreadValues({}, value), { day: v }));
+              if (v.length === 2) (_a = monthRef.current) == null ? void 0 : _a.focus();
+            }
+          }
+        ) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Month" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[64px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+          "input",
+          {
+            ref: monthRef,
+            type: "text",
+            inputMode: "numeric",
+            maxLength: 2,
+            placeholder: "mm",
+            value: value.month,
+            disabled,
+            className: inputClass,
+            onChange: (e) => {
+              var _a;
+              const v = e.target.value.replace(/\D/g, "");
+              onChange(__spreadProps(__spreadValues({}, value), { month: v }));
+              if (v.length === 2) (_a = yearRef.current) == null ? void 0 : _a.focus();
+            }
+          }
+        ) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Year" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[80px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+          "input",
+          {
+            ref: yearRef,
+            type: "text",
+            inputMode: "numeric",
+            maxLength: 4,
+            placeholder: "yyyy",
+            value: value.year,
+            disabled,
+            className: inputClass,
+            onChange: (e) => {
+              const v = e.target.value.replace(/\D/g, "");
+              onChange(__spreadProps(__spreadValues({}, value), { year: v }));
+            }
+          }
+        ) })
+      ] })
+    ] }),
+    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
+  ] });
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Add,
@@ -1166,6 +1421,7 @@ function SmallSemibold({ children, className, as }) {
   CloseFilled,
   CompactMedium,
   CompactSemibold,
+  DateOfBirthField,
   Delete,
   Download,
   Edit,
@@ -1186,7 +1442,9 @@ function SmallSemibold({ children, className, as }) {
   Lock,
   Mail,
   Menu,
+  MobileNumberField,
   Pin,
+  PinCodeField,
   Search,
   SearchField,
   Settings,

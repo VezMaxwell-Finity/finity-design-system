@@ -315,4 +315,42 @@ declare function CompactSemibold({ children, className, as }: Omit<TextProps, 'v
 declare function CompactMedium({ children, className, as }: Omit<TextProps, 'variant'>): react_jsx_runtime.JSX.Element;
 declare function SmallSemibold({ children, className, as }: Omit<TextProps, 'variant'>): react_jsx_runtime.JSX.Element;
 
-export { Add, AddSquare, ArrowDown, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, Bank, Body, BodyMedium, BodySemibold, Button, type ButtonProps, type ButtonSize, type ButtonVariant, Calendar, CaretDown, CaretLeft, CaretRight, CaretUp, Check, CheckCircle, Checkbox, type CheckboxProps, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, Close, CloseFilled, CompactMedium, CompactSemibold, Delete, Download, Edit, ErrorFilled, File, Filter, Flag, Globe, HeadingLG, HeadingMD, HeadingSM, HeadingXL, Help, HelperText, type HelperTextProps, type HelperTextType, Home, type IconProps, Info, InfoFilled, Lock, Mail, Menu, Pin, Search, SearchField, type SearchFieldProps, Settings, SmallSemibold, Star, SuccessFilled, type TabItem, Tabs, type TabsProps, type TabsSize, Text, TextArea, type TextAreaProps, TextField, type TextFieldProps, type TextFieldSize, Upload, User, Users, Wallet, Warning, WarningFilled, createIcon, defaultIconProps };
+type PinCodeSize = 'large' | 'medium';
+interface PinCodeFieldProps {
+    length?: 4 | 6;
+    size?: PinCodeSize;
+    value: string;
+    onChange: (value: string) => void;
+    errorMessage?: string;
+    helperText?: string;
+    disabled?: boolean;
+    readOnly?: boolean;
+    className?: string;
+}
+declare function PinCodeField({ length, size, value, onChange, errorMessage, helperText, disabled, readOnly, className, }: PinCodeFieldProps): react_jsx_runtime.JSX.Element;
+
+interface MobileNumberFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
+    label?: string;
+    dialCode?: string;
+    helperText?: string;
+    errorMessage?: string;
+}
+declare const MobileNumberField: react.ForwardRefExoticComponent<MobileNumberFieldProps & react.RefAttributes<HTMLInputElement>>;
+
+interface DateOfBirthValue {
+    day: string;
+    month: string;
+    year: string;
+}
+interface DateOfBirthFieldProps {
+    label?: string;
+    value: DateOfBirthValue;
+    onChange: (value: DateOfBirthValue) => void;
+    errorMessage?: string;
+    helperText?: string;
+    disabled?: boolean;
+    className?: string;
+}
+declare function DateOfBirthField({ label, value, onChange, errorMessage, helperText, disabled, className, }: DateOfBirthFieldProps): react_jsx_runtime.JSX.Element;
+
+export { Add, AddSquare, ArrowDown, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, Bank, Body, BodyMedium, BodySemibold, Button, type ButtonProps, type ButtonSize, type ButtonVariant, Calendar, CaretDown, CaretLeft, CaretRight, CaretUp, Check, CheckCircle, Checkbox, type CheckboxProps, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, Close, CloseFilled, CompactMedium, CompactSemibold, DateOfBirthField, type DateOfBirthFieldProps, type DateOfBirthValue, Delete, Download, Edit, ErrorFilled, File, Filter, Flag, Globe, HeadingLG, HeadingMD, HeadingSM, HeadingXL, Help, HelperText, type HelperTextProps, type HelperTextType, Home, type IconProps, Info, InfoFilled, Lock, Mail, Menu, MobileNumberField, type MobileNumberFieldProps, Pin, PinCodeField, type PinCodeFieldProps, type PinCodeSize, Search, SearchField, type SearchFieldProps, Settings, SmallSemibold, Star, SuccessFilled, type TabItem, Tabs, type TabsProps, type TabsSize, Text, TextArea, type TextAreaProps, TextField, type TextFieldProps, type TextFieldSize, Upload, User, Users, Wallet, Warning, WarningFilled, createIcon, defaultIconProps };
