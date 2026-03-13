@@ -17,11 +17,8 @@
   },
   "sideEffects": false,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "build:lib": "tsup src/index.ts --format cjs,esm --dts --external react react-dom",
-    "start": "next start",
-    "lint": "eslint"
+    "build": "tsup src/index.ts --format cjs,esm --dts --no-dts-resolve --external react react-dom",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --no-dts-resolve --external react react-dom --watch"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -29,10 +26,9 @@
   },
   "dependencies": {
     "@types/papaparse": "^5.5.2",
-    "next": "16.1.6",
     "papaparse": "^5.5.3",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": ">=18",
+    "react-dom": ">=18",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
@@ -41,7 +37,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "tsup": "^8",
     "typescript": "^5"
