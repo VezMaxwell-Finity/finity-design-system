@@ -83,6 +83,7 @@ __export(index_exports, {
   Download: () => Download,
   Edit: () => Edit,
   ErrorFilled: () => ErrorFilled,
+  FigmaTabs: () => FigmaTabs,
   File: () => File,
   Filter: () => Filter,
   Flag: () => Flag,
@@ -1075,6 +1076,38 @@ function Tabs({
   );
 }
 
+// src/components/tabs/FigmaTabs.tsx
+var import_jsx_runtime12 = require("react/jsx-runtime");
+var tabs = [
+  "Overview",
+  "Employees",
+  "Payroll",
+  "Settings"
+];
+function FigmaTabs() {
+  const active = "Overview";
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "inline-flex border-b border-[var(--color-border-subtle)] gap-6", children: tabs.map((label) => {
+    const isActive = label === active;
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+      "button",
+      {
+        type: "button",
+        className: [
+          "inline-flex items-center justify-center",
+          "h-10 rounded-none",
+          // Padding tuned to create clear breathing room around the text
+          "px-6",
+          // 24px
+          "text-compact-medium",
+          isActive ? "text-[var(--color-coral-500)] border-b-2 border-[var(--color-coral-500)]" : "text-[var(--color-text-secondary)] border-b-2 border-transparent hover:text-[var(--color-text-default)]"
+        ].join(" "),
+        children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "text-compact-semibold", children: label })
+      },
+      label
+    );
+  }) });
+}
+
 // src/tokens/typography.ts
 var textStyles = {
   headingXl: "text-heading-xl",
@@ -1090,7 +1123,7 @@ var textStyles = {
 };
 
 // src/components/typography/Text.tsx
-var import_jsx_runtime12 = require("react/jsx-runtime");
+var import_jsx_runtime13 = require("react/jsx-runtime");
 var defaultElements = {
   headingXl: "h1",
   headingLg: "h2",
@@ -1106,42 +1139,42 @@ var defaultElements = {
 function Text({ variant, as, children, className = "" }) {
   const Component = as || defaultElements[variant];
   const baseClass = textStyles[variant];
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Component, { className: `${baseClass} ${className}`.trim(), children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Component, { className: `${baseClass} ${className}`.trim(), children });
 }
 function HeadingXL({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "headingXl", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "headingXl", as, className, children });
 }
 function HeadingLG({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "headingLg", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "headingLg", as, className, children });
 }
 function HeadingMD({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "headingMd", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "headingMd", as, className, children });
 }
 function HeadingSM({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "headingSm", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "headingSm", as, className, children });
 }
 function BodySemibold({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "bodySemibold", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "bodySemibold", as, className, children });
 }
 function BodyMedium({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "bodyMedium", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "bodyMedium", as, className, children });
 }
 function Body({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "bodyRegular", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "bodyRegular", as, className, children });
 }
 function CompactSemibold({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "compactSemibold", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "compactSemibold", as, className, children });
 }
 function CompactMedium({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "compactMedium", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "compactMedium", as, className, children });
 }
 function SmallSemibold({ children, className, as }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Text, { variant: "smallSemibold", as, className, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Text, { variant: "smallSemibold", as, className, children });
 }
 
 // src/components/pin-code-field/PinCodeField.tsx
 var import_react5 = require("react");
-var import_jsx_runtime13 = require("react/jsx-runtime");
+var import_jsx_runtime14 = require("react/jsx-runtime");
 function PinCodeField({
   length = 6,
   size = "large",
@@ -1201,7 +1234,7 @@ function PinCodeField({
     transition-colors duration-150
     ${disabled || readOnly ? "cursor-not-allowed" : ""}
   `;
-  const slots = digits.map((digit, i) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+  const slots = digits.map((digit, i) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
     "input",
     {
       ref: (el) => {
@@ -1222,7 +1255,7 @@ function PinCodeField({
   ));
   const slotsWithDivider = length === 6 ? [
     ...slots.slice(0, 3),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
       "div",
       {
         className: "w-[8px] h-0 border-t border-[var(--color-border-default)] self-center"
@@ -1231,15 +1264,15 @@ function PinCodeField({
     ),
     ...slots.slice(3)
   ] : slots;
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-4)] items-start ${className}`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "flex items-center gap-[var(--spacing-8)]", children: slotsWithDivider }),
-    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-4)] items-start ${className}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "flex items-center gap-[var(--spacing-8)]", children: slotsWithDivider }),
+    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
   ] });
 }
 
 // src/components/mobile-number-field/MobileNumberField.tsx
 var import_react6 = require("react");
-var import_jsx_runtime14 = require("react/jsx-runtime");
+var import_jsx_runtime15 = require("react/jsx-runtime");
 var MobileNumberField = (0, import_react6.forwardRef)(
   function MobileNumberField2(_a, ref) {
     var _b = _a, {
@@ -1259,9 +1292,9 @@ var MobileNumberField = (0, import_react6.forwardRef)(
     ]);
     const hasError = !!errorMessage;
     const borderClass = hasError ? "border-2 border-[var(--color-red-600)]" : disabled ? "border border-[var(--color-border-subtle)]" : "border border-[var(--color-border-default)] focus-within:border-[3px] focus-within:border-[var(--color-text-default)]";
-    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-8)] w-full ${className}`, children: [
-      label && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("label", { className: "text-body-medium text-[var(--color-text-secondary)]", children: label }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-8)] w-full ${className}`, children: [
+      label && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { className: "text-body-medium text-[var(--color-text-secondary)]", children: label }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
         "div",
         {
           className: `
@@ -1272,8 +1305,8 @@ var MobileNumberField = (0, import_react6.forwardRef)(
             ${disabled ? "bg-[var(--color-grey-100)]" : "bg-[var(--color-base-white)]"}
           `,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "flex items-center justify-center shrink-0 h-full px-[var(--spacing-12)] bg-[var(--color-grey-100)] border-r border-[var(--color-border-default)]", children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { className: "text-body-medium text-[var(--color-text-secondary)] w-[var(--spacing-32)] text-center", children: dialCode }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "flex items-center justify-center shrink-0 h-full px-[var(--spacing-12)] bg-[var(--color-grey-100)] border-r border-[var(--color-border-default)]", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "text-body-medium text-[var(--color-text-secondary)] w-[var(--spacing-32)] text-center", children: dialCode }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
               "input",
               __spreadValues({
                 ref,
@@ -1292,14 +1325,14 @@ var MobileNumberField = (0, import_react6.forwardRef)(
           ]
         }
       ),
-      (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
+      (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
     ] });
   }
 );
 
 // src/components/date-of-birth-field/DateOfBirthField.tsx
 var import_react7 = require("react");
-var import_jsx_runtime15 = require("react/jsx-runtime");
+var import_jsx_runtime16 = require("react/jsx-runtime");
 function DateOfBirthField({
   label = "Date of birth",
   value,
@@ -1320,12 +1353,12 @@ function DateOfBirthField({
     placeholder:text-[var(--color-text-disabled)]
     disabled:cursor-not-allowed disabled:text-[var(--color-text-disabled)]
   `;
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-4)] ${className}`, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { className: "text-body-medium text-[var(--color-text-secondary)]", children: label }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "flex gap-[var(--spacing-8)] items-start", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Day" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[64px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: `flex flex-col gap-[var(--spacing-4)] ${className}`, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("label", { className: "text-body-medium text-[var(--color-text-secondary)]", children: label }),
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "flex gap-[var(--spacing-8)] items-start", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Day" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[64px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
           "input",
           {
             type: "text",
@@ -1344,9 +1377,9 @@ function DateOfBirthField({
           }
         ) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Month" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[64px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Month" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[64px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
           "input",
           {
             ref: monthRef,
@@ -1366,9 +1399,9 @@ function DateOfBirthField({
           }
         ) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Year" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[80px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "flex flex-col gap-[var(--spacing-4)]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "text-compact-medium text-[var(--color-text-tertiary)]", children: "Year" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: `flex items-center overflow-hidden rounded-lg border-solid h-[var(--spacing-48)] w-[80px] transition-colors duration-150 ${slotClass}`, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
           "input",
           {
             ref: yearRef,
@@ -1387,7 +1420,7 @@ function DateOfBirthField({
         ) })
       ] })
     ] }),
-    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
+    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(HelperText, { type: hasError ? "error" : "default", children: errorMessage || helperText })
   ] });
 }
 // Annotate the CommonJS export names for ESM import in node:
@@ -1426,6 +1459,7 @@ function DateOfBirthField({
   Download,
   Edit,
   ErrorFilled,
+  FigmaTabs,
   File,
   Filter,
   Flag,

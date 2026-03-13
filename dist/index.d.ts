@@ -282,6 +282,8 @@ interface TabsProps {
 }
 declare function Tabs({ items, value, onChange, size, fullWidth, className, }: TabsProps): react_jsx_runtime.JSX.Element;
 
+declare function FigmaTabs(): react_jsx_runtime.JSX.Element;
+
 declare const textStyles: {
     readonly headingXl: "text-heading-xl";
     readonly headingLg: "text-heading-lg";
@@ -353,4 +355,4 @@ interface DateOfBirthFieldProps {
 }
 declare function DateOfBirthField({ label, value, onChange, errorMessage, helperText, disabled, className, }: DateOfBirthFieldProps): react_jsx_runtime.JSX.Element;
 
-export { Add, AddSquare, ArrowDown, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, Bank, Body, BodyMedium, BodySemibold, Button, type ButtonProps, type ButtonSize, type ButtonVariant, Calendar, CaretDown, CaretLeft, CaretRight, CaretUp, Check, CheckCircle, Checkbox, type CheckboxProps, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, Close, CloseFilled, CompactMedium, CompactSemibold, DateOfBirthField, type DateOfBirthFieldProps, type DateOfBirthValue, Delete, Download, Edit, ErrorFilled, File, Filter, Flag, Globe, HeadingLG, HeadingMD, HeadingSM, HeadingXL, Help, HelperText, type HelperTextProps, type HelperTextType, Home, type IconProps, Info, InfoFilled, Lock, Mail, Menu, MobileNumberField, type MobileNumberFieldProps, Pin, PinCodeField, type PinCodeFieldProps, type PinCodeSize, Search, SearchField, type SearchFieldProps, Settings, SmallSemibold, Star, SuccessFilled, type TabItem, Tabs, type TabsProps, type TabsSize, Text, TextArea, type TextAreaProps, TextField, type TextFieldProps, type TextFieldSize, Upload, User, Users, Wallet, Warning, WarningFilled, createIcon, defaultIconProps };
+export { Add, AddSquare, ArrowDown, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, Bank, Body, BodyMedium, BodySemibold, Button, type ButtonProps, type ButtonSize, type ButtonVariant, Calendar, CaretDown, CaretLeft, CaretRight, CaretUp, Check, CheckCircle, Checkbox, type CheckboxProps, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock, Close, CloseFilled, CompactMedium, CompactSemibold, DateOfBirthField, type DateOfBirthFieldProps, type DateOfBirthValue, Delete, Download, Edit, ErrorFilled, FigmaTabs, File, Filter, Flag, Globe, HeadingLG, HeadingMD, HeadingSM, HeadingXL, Help, HelperText, type HelperTextProps, type HelperTextType, Home, type IconProps, Info, InfoFilled, Lock, Mail, Menu, MobileNumberField, type MobileNumberFieldProps, Pin, PinCodeField, type PinCodeFieldProps, type PinCodeSize, Search, SearchField, type SearchFieldProps, Settings, SmallSemibold, Star, SuccessFilled, type TabItem, Tabs, type TabsProps, type TabsSize, Text, TextArea, type TextAreaProps, TextField, type TextFieldProps, type TextFieldSize, Upload, User, Users, Wallet, Warning, WarningFilled, createIcon, defaultIconProps };
